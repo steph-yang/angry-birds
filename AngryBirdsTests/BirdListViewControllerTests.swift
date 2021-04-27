@@ -32,9 +32,9 @@ class BirdListViewControllerTests: XCTestCase {
         //Given
         let mockBirdService = MockBirdService()
         let mockBirds = [
-            Bird(named: "Oriole", description: "Angry", imageUrl: "https://chelseatroy.com/wp-content/uploads/2019/05/bluebird.png"),
-            Bird(named: "Cardinal", description: "Angry", imageUrl: "https://chelseatroy.com/wp-content/uploads/2019/05/bluebird.png"),
-            Bird(named: "Robin", description: "Angry", imageUrl: "https://chelseatroy.com/wp-content/uploads/2019/05/bluebird.png"),
+            Bird(named: "Oriole", description: "Angry", imageUrl: "birds.com/angryoriole"),
+            Bird(named: "Cardinal", description: "Angry", imageUrl: "birds.com/angryoriole"),
+            Bird(named: "Robin", description: "Angry", imageUrl: "birds.com/angryoriole"),
         ]
         mockBirdService.mockBirds = mockBirds
         
