@@ -21,11 +21,15 @@ class BirdCell: UITableViewCell {
             self.accessoryType = bird!.confirmedSighting ? .checkmark : .none
             
             DispatchQueue.global(qos: .userInitiated).async {
-                let birdImageData = NSData(contentsOf: URL(string: self.bird!.imageUrl)!)
-                DispatchQueue.main.async {
-                    self.birdImageView.image = UIImage(data: birdImageData as! Data)
-                    self.birdImageView.layer.cornerRadius = self.birdImageView.frame.width / 2
+                let link = self.bird!.imageUrl
+                if link.hasSuffix(".png") || link.hasSuffix(".jpg") || link.hasSuffix(".jpeg") {
+                    let birdImageData = NSData(contentsOf: URL(string: link)!)
+                    DispatchQueue.main.async {
+                        self.birdImageView.image = UIImage(data: birdImageData! as Data)
+                        self.birdImageView.layer.cornerRadius = self.birdImageView.frame.width / 2
+                    }
                 }
+
             }
         }
     }
@@ -42,3 +46,4 @@ class BirdCell: UITableViewCell {
     }
 
 }
+
