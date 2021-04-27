@@ -19,7 +19,6 @@ class BirdListViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         self.birdService = BirdService()
-        
         self.tableView.dataSource = self
         self.tableView.delegate = self
     }
@@ -29,9 +28,24 @@ class BirdListViewController: UIViewController {
         
        confirmedService.getBirds(completion: { birds, error in
             guard let birds = birds, error == nil else {
+                let alert = UIAlertController(title: "Warning", message: "No Available Network!", preferredStyle: UIAlertController.Style.alert)
+                let OKAction = UIAlertAction(title: "Retry", style: .default) { (action) in
+                    self.viewWillAppear(false)
+                }
+                alert.addAction(OKAction)
+
+                self.present(alert, animated: true, completion: nil)
                 return
             }
             self.flock = birds
+        
+//         Alert for empty API
+        if self.flock.isEmpty{
+            let alert = UIAlertController(title: "Warning", message: "Empty Dataset!", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
             self.tableView.reloadData()
        })
     }
@@ -69,4 +83,5 @@ extension BirdListViewController: UITableViewDataSource {
 extension BirdListViewController: UITableViewDelegate {
     //MARK: Delegate
 }
+
 
